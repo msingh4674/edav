@@ -20,7 +20,7 @@ class PopulationTableGrabber(object):
 
     def parse_one_table(self, tab):
         ''' somewhat dirty, but grabs the year, skips a row, and parses the rest
-            would break if there were and asterisk row for example
+            would break if there were and asterisk row for example ms edit
         '''
         yearElement = tab.find(colspan='3')
         year = int(yearElement.get_text())
@@ -29,7 +29,7 @@ class PopulationTableGrabber(object):
         for row in rows:
             tds = row.find_all('td')
             rowdata = {
-                'year': year,
+                'yr': year,
                 'rank': self.fix_ordinals(tds[0].get_text()), 
                 'city': tds[1].get_text(), 
                 'pop': float(tds[2].get_text())
